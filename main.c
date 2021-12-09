@@ -14,14 +14,16 @@
 
 int	main(void)
 {
-	int	fd;
-	fd = open("test.txt", O_RDONLY);
-	if (fd == -1)
-	{
-		printf("impossible de lire le fichier");
-	}
-	get_next_line(fd);
-	close(fd);
+	// int	fd;
+	// fd = open("test.txt", O_RDONLY);
+	// if (fd == -1)
+	// {
+	// 	printf("impossible de lire le fichier");
+	// }
+	// get_next_line(fd);
+	// close(fd);
+	// return (0);
 
-	return (0);
+	char to_trim[20] = "Salut,\n trimmez moi";
+	printf("str trimmee =%s", ft_trim_line(to_trim));
 }

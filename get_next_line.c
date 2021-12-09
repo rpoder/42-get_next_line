@@ -12,33 +12,82 @@
 
 #include "get_next_line.h"
 
-int	count_line(void)
+char *ft_trim(char *to_trim)
 {
-	static int	i = 0;
+	char	*tmp;
+	size_t	len;
+	int		i;
+	int		j;
 
-	i++;
-	return (i);
+	i = 0;
+	j = 0;
+	while (to_trim[i] != '\n' && to_trim[i])
+		i++;
+	len = ft_strlen(to_trim) - i - 1;
+	printf("len = %zu\n", len);
+	tmp = (char *)malloc(len * sizeof(char));
+	i++; //sauter \n
+	while (j < len)
+	{
+		tmp[j] = to_trim[i];
+		i++;
+		j++;
+	}
+	tmp[len] = '\0';
+	free(to_trim);
+	return (tmp);
+}
+
+char	*ft_trim_line(char	*to_trim)
+{
+	char	*tmp;
+	size_t	len;
+	int		i;
+
+	i = 0;
+	len = 0;
+	while (to_trim[len] != '\n' && to_trim[len])
+		len++;
+	if (to_trim[len] == '\n')
+		len++;
+	tmp = (char *)malloc((len + 1) * sizeof(char));
+	while (i <= len)
+	{
+		tmp[i] = to_trim[i];
+		i++;
+	}
+	tmp[len + 1] = '\0';
+	//free(to_trim);
+	return (tmp);
+}
+
+char	*ft_read_line(int fd, char *reste)
+{
+	char	*buf;
+	char	*tmp;
+	int		ret;
+
+	buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	while (!ft_strchr(buf, '\n'))
+	{
+		ret = read(fd, buf, BUFFER_SIZE);
+		if (ret == -1)
+		{
+			free(buf);
+			return (NULL);
+		}
+		buf[ret] = '\0';
+		reste = ft_strjoin(reste, buf);
+	}
+	free(buf);
+	return (reste);
 }
 
 char	*get_next_line(int fd)
 {
-	static int	i = 0;
-	int	j;
-	char		buf[BUFFER_SIZE + 1];
-	char	*tmp;
-
-	tmp = (char *)ft_calloc(1, sizeof(char));
-
-	printf("buf:%s\n",buf);
-
-	while (!ft_strchr(buf, '\n'))
-	{
-		printf("boucle\n");
-		read(fd, buf, BUFFER_SIZE);
-		printf("buf:%s\n",buf);
-		tmp = ft_strjoin(tmp, buf);
-	}
-
-	printf("tmp:%s\n", tmp);
+	static char	* reste;
+	
+	reste = ft_read_line(fd, reste);
+	printf("reste|%s|\n", reste);
 	return (NULL);
 }
