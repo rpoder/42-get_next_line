@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:55:06 by rpoder            #+#    #+#             */
-/*   Updated: 2021/11/30 18:19:56 by rpoder           ###   ########.fr       */
+/*   Updated: 2021/12/10 20:33:02 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 char	*ft_strjoin(char *s1, char *s2)
 {
@@ -21,13 +20,15 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
+	printf("s1 %s\n", s1);
+	printf("s2 %s\n", s2);
 	if (!s1)
-		{
-			s1 = malloc(sizeof(char));
-			if (!s1)
-				return (NULL);
-			s1[0] = '\0';
-		}
+	{
+		s1 = malloc(sizeof(char));
+		if (!s1)
+			return (NULL);
+		s1[0] = '\0';
+	}
 	if (!s1 || !s2)
 		return (NULL);
 	dst = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
@@ -47,19 +48,27 @@ char	*ft_strjoin(char *s1, char *s2)
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s)
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	while (s[i])
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+		i++;
 	}
 	if (c == '\0')
-		return ((char *)s);
+	{
+		i = ft_strlen(s);
+		return ((char *)s + i);
+	}
 	return (NULL);
 }
 
 size_t	ft_strlen(const char *str)
-{	
+{
 	size_t	i;
 
 	i = 0;
