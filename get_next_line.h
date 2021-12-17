@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:50:40 by rpoder            #+#    #+#             */
-/*   Updated: 2021/12/10 20:14:25 by rpoder           ###   ########.fr       */
+/*   Updated: 2021/12/17 17:07:28 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <string.h>
 # include <stdlib.h>
 
-# define BUFFER_SIZE 2
+//# define BUFFER_SIZE 2
 char	*get_next_line(int fd);
 char	*ft_trim_rest(char *to_trim);
 char	*ft_trim_line(char	*to_trim);
