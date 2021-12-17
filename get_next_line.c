@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:54:31 by rpoder            #+#    #+#             */
-/*   Updated: 2021/12/17 17:13:09 by rpoder           ###   ########.fr       */
+/*   Updated: 2021/12/17 17:39:13 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char	*ft_trim_rest(char *to_trim)
 {
 	char	*tmp;
-	size_t	len;
 	int		i;
 	int		j;
 
@@ -28,17 +27,12 @@ char	*ft_trim_rest(char *to_trim)
 		free(to_trim);
 		return (NULL);
 	}
-	len = ft_strlen(to_trim) - i;
-	tmp = (char *)malloc((len + 1) * sizeof(char));
+	tmp = malloc((ft_strlen(to_trim) - i + 1) * sizeof(char));
 	if (!tmp)
 		return (NULL);
 	i++;
 	while (to_trim[i])
-	{
-		tmp[j] = to_trim[i];
-		i++;
-		j++;
-	}
+		tmp[j++] = to_trim[i++];
 	tmp[j] = '\0';
 	free(to_trim);
 	return (tmp);

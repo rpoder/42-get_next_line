@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:55:06 by rpoder            #+#    #+#             */
-/*   Updated: 2021/12/17 17:03:55 by rpoder           ###   ########.fr       */
+/*   Updated: 2021/12/17 17:49:41 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		i;
 	int		j;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	//printf("s1 |%s|\n", s1);
-	//printf("s2 |%s|\n\n\n", s2);
 	if (!s1)
 	{
 		s1 = malloc(sizeof(char));
@@ -34,11 +32,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	dst = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!dst)
 		return (NULL);
-	while (s1[i])
-	{
+	while (s1[++i])
 		dst[i] = s1[i];
-		i++;
-	}
 	while (s2[j])
 		dst[i++] = s2[j++];
 	dst[i] = '\0';
